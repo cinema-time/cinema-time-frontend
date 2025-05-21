@@ -24,7 +24,13 @@ function EventDetailsPage() {
       <img style={{ width: '300px', height: 'auto' }}  src = {event.imageUrl} />
       <p>{event.description}</p>
       <p>Created by :{event.createdBy.name}</p>
-      <p>Who's attending?:{event.participants.name}</p>
+      <p>Who's attending?: 
+  {event?.participants?.length > 0 
+    ? event.participants.map((participant, index) => (
+        <span key={index}>{participant.name}{index < event.participants.length - 1 ? ', ' : ''}</span>
+      ))
+    : "No participants yet"}
+</p>
       
       
       <Link to="/events">
@@ -32,7 +38,7 @@ function EventDetailsPage() {
       </Link>
       
       
-      <Link to={`/event/details/${eventId}`}>
+      <Link to={`/editEvent/${eventId}`}>
         <button>Edit Event</button>
       </Link>
     </div>

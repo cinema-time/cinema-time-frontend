@@ -27,7 +27,7 @@ function App() {
         <Route path="/films/:filmId" element={<FilmDetailsPage />} />
         <Route path="/filmlist" element={<FilmListPage />} />
         <Route path="/about" element={<About />} />
-        <Route path="/editEvent" element={<EventEditPage />} />
+        <Route path="/editEvent/:eventId" element={<EventEditPage />} />
         <Route path="/event/details/:eventId" element={<EventDetailsPage />} />
         <Route path="/createevent" element={<EventCreatePage />} />
       </Routes>

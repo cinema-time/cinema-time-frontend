@@ -21,7 +21,10 @@ function FilmListPage() {
         return (
           <div key={filmObj._id}>
             <h1>{filmObj.title}</h1>
+            <img style={{ width: '300px', height: 'auto' }}  src = {filmObj.image} />
+            <p>{filmObj.year}</p>
             <p>{filmObj.genre}</p>
+            <p>{filmObj.director}</p>
           </div>
         );
       })}

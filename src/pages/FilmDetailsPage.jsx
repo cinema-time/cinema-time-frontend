@@ -48,7 +48,7 @@ function FilmDetailsPage() {
                 <p><strong>{film.title}</strong></p>
                 {film.img && (
                   <img
-                    src={film.img}
+                    src={film.image}
                     alt={film.title}
                     width="270px"
                     height="200px"
