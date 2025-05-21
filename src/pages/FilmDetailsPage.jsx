@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -10,25 +11,25 @@ function FilmDetailsPage() {
 	const { filmId } = useParams();
 
 	useEffect(() => {
-        const getFilm = () => {
-            console.log("Fetching film with ID:", filmId);
-            axios
-                .get(`${API_URL}/api/film/${filmId}`)
-                .then((response) => {
-                    console.log("API response:", response.data);
-                    setFilm(response.data);
-                    setLoading(false);
-                })
-                .catch((error) => {
-                    console.error("API fetch error:", error);
-                    setLoading(false);
-                });
-        };
-        getFilm();
-    }, [filmId]);
+		const getFilm = () => {
+			console.log("Fetching film with ID:", filmId);
+			axios
+				.get(`${API_URL}/api/film/${filmId}`)
+				.then((response) => {
+					console.log("API response:", response.data);
+					setFilm(response.data);
+					setLoading(false);
+				})
+				.catch((error) => {
+					console.error("API fetch error:", error);
+					setLoading(false);
+				});
+		};
+		getFilm();
+	}, [filmId]);
 
 	if (loading) return <div>Loading...</div>;
-    if(!film) return <div>No film found...</div>
+	if (!film) return <div>No film found...</div>;
 
 	return (
         <>
@@ -48,7 +49,7 @@ function FilmDetailsPage() {
                 <p><strong>{film.title}</strong></p>
                 {film.img && (
                   <img
-                    src={film.image}
+                    src={film.img}
                     alt={film.title}
                     width="270px"
                     height="200px"
@@ -64,4 +65,4 @@ function FilmDetailsPage() {
       );
         }
 
-        export default FilmDetailsPage
+export default FilmDetailsPage;

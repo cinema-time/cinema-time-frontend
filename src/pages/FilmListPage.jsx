@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const API_URL = "http://localhost:5005";
 
@@ -16,16 +17,16 @@ function FilmListPage() {
   }, []);
 
   return (
-    <div>
+    <div className="movie-card">
       {film.map((filmObj) => {
         return (
-          <div key={filmObj._id}>
+            <Link to={`/films/${filmObj._id}`} key={filmObj._id} className="movie-card">
             <h1>{filmObj.title}</h1>
             <img style={{ width: '300px', height: 'auto' }}  src = {filmObj.image} />
             <p>{filmObj.year}</p>
             <p>{filmObj.genre}</p>
             <p>{filmObj.director}</p>
-          </div>
+          </Link>
         );
       })}
     </div>
