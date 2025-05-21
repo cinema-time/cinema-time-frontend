@@ -10,52 +10,58 @@ function FilmDetailsPage() {
 	const { filmId } = useParams();
 
 	useEffect(() => {
-		const getFilm = () => {
-			axios
-				.get(`${API_URL}/api/film/${filmId}`)
-				.then((response) => {
-					const oneFilm = response.data;
-					setFilm(oneFilm);
-					setLoading(false);
-				})
-				.catch((error) => console.log(error));
-		};
-		getFilm();
-	}, [filmId]);
+        const getFilm = () => {
+            console.log("Fetching film with ID:", filmId);
+            axios
+                .get(`${API_URL}/api/film/${filmId}`)
+                .then((response) => {
+                    console.log("API response:", response.data);
+                    setFilm(response.data);
+                    setLoading(false);
+                })
+                .catch((error) => {
+                    console.error("API fetch error:", error);
+                    setLoading(false);
+                });
+        };
+        getFilm();
+    }, [filmId]);
 
 	if (loading) return <div>Loading...</div>;
+    if(!film) return <div>No film found...</div>
 
 	return (
-		<>
-			<div className="container">
-                <h1>FILMS</h1>
-                {film.map((post) => (
-                    <div
-                    className="card"
-                    key={post.id}
-                    style={{
-                      border: "1px solid #ccc",
-                      padding: "10px",
-                      width: "300px",
-                      borderRadius: "8px",
-                    }}>
-                    <p>
-                   
-                      <strong>{post.title}</strong> 
-                    </p>
-                    <img
-                      src={post.img}
-                      alt={post.title}
-                      width="270px"
-                      height="200px"
-                      style={{ objectFit: "cover", borderRadius: "4px" }}
-                    />
-                    <p>{post.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </>
-            );
+        <>
+          <div className="container">
+            <h1>FILMS</h1>
+            {film && (
+              <div
+                className="panel"
+                key={film._id}
+                style={{
+                  border: "1px solid #ccc",
+                  padding: "10px",
+                  width: "300px",
+                  borderRadius: "8px",
+                }}
+              >
+                <p><strong>{film.title}</strong></p>
+                {film.img && (
+                  <img
+                    src={film.img}
+                    alt={film.title}
+                    width="270px"
+                    height="200px"
+                    style={{ objectFit: "cover", borderRadius: "4px" }}
+                  />
+                )}
+                <p>{film.description}</p>
+                <p><strong>Genre:</strong> {film.genre } <strong>Year: </strong> {film.year}</p>
+              </div>
+            )}
+          </div>
+        </>
+      );
         }
 
         export default FilmDetailsPage

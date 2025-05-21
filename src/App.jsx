@@ -9,6 +9,7 @@ import About from "./pages/About";
 import SignupPage from "./pages/SignupPage";
 import EventEditPage from "./pages/EventEditPage";
 import "./App.css";
+import EventCreatePage from "./pages/EventCreatePage";
 
 function App() {
 	return (
@@ -18,10 +19,11 @@ function App() {
 			<Routes>
 				<Route path="/" element={<SignupPage />} />
 				<Route path="/" element={<LoginPage />} />
-				<Route path="/films/details/:filmId" element={<FilmDetailsPage />} />
+				<Route path="/films/:filmId" element={<FilmDetailsPage />} />
 				<Route path="/filmlist" element={<FilmListPage />} />
 				<Route path="/about" element={<About />} />
 				<Route path="/editEvent" element={<EventEditPage />} /> 
+        <Route path="/createevent" element={<EventCreatePage />} />
 			</Routes>
 			<Footer />
 		</>
