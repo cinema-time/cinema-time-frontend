@@ -9,6 +9,7 @@ import About from "./pages/About";
 import SignupPage from "./pages/SignupPage";
 import EventEditPage from "./pages/EventEditPage";
 import "./App.css";
+import EventDetailsPage from "./pages/EventDetailsPage";
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 				<Route path="/filmlist" element={<FilmListPage />} />
 				<Route path="/about" element={<About />} />
 				<Route path="/editEvent" element={<EventEditPage />} /> 
+				<Route path="/event/details/:eventId" element={<EventDetailsPage />} /> 
 			</Routes>
 			<Footer />
 		</>
