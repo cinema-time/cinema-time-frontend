@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import NavBar from './components/Navbar'  
 import Footer from './components/Footer'
+import SignupPage from './pages/SignupPage'
 
 function App() {
   
@@ -9,8 +10,9 @@ function App() {
     <>
 <NavBar />
 
-    <h1>This will be something nice soon</h1>
-    <h2>Stay tuned</h2>
+    <Routes>
+    <Route path="/" element={<SignupPage />} />
+    </Routes>
 
     <Footer />
     </>
