@@ -13,23 +13,27 @@ import EventCreatePage from "./pages/EventCreatePage";
 import EventDetailsPage from "./pages/EventDetailsPage";
 
 function App() {
-	return (
-		<>
-			<NavBar />
+  return (
+    <>
+      <NavBar />
 
-			<Routes>
-				<Route path="/" element={<SignupPage />} />
-				<Route path="/" element={<LoginPage />} />
-				<Route path="/films/:filmId" element={<FilmDetailsPage />} />
-				<Route path="/filmlist" element={<FilmListPage />} />
-				<Route path="/about" element={<About />} />
-				<Route path="/editEvent" element={<EventEditPage />} /> 
-				<Route path="/event/details/:eventId" element={<EventDetailsPage />} /> 
+	  <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
+
+      <Routes>
+        <Route path="/" element={<SignupPage />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/films/:filmId" element={<FilmDetailsPage />} />
+        <Route path="/filmlist" element={<FilmListPage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/editEvent" element={<EventEditPage />} />
+        <Route path="/event/details/:eventId" element={<EventDetailsPage />} />
         <Route path="/createevent" element={<EventCreatePage />} />
-			</Routes>
-			<Footer />
-		</>
-	);
+      </Routes>
+      <Footer />
+    </>
+  );
 }
 
 export default App;
