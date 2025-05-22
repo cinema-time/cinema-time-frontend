@@ -8,6 +8,8 @@ function EventEditPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [location, setlocation] = useState("");
+  const [date, setdate] = useState("");
   const [createdBy, setCreatedBy] = useState(""); // Keep it, but consider not allowing edits here.
   const [participants, setParticipants] = useState("");
 
@@ -25,8 +27,11 @@ function EventEditPage() {
         setTitle(oneEvent.title);
         setDescription(oneEvent.description);
         setImageUrl(oneEvent.imageUrl);
+        setlocation(oneEvent.location);
+        setdate(oneEvent.date);
         setCreatedBy(oneEvent.createdBy ? oneEvent.createdBy.name : "");
        setParticipants(oneEvent.participants.map(part => part._id).join(", "));
+       
       })
       .catch((error) => console.log(error));
   }, [eventId]);
@@ -38,6 +43,8 @@ function EventEditPage() {
       title,
       description,
       imageUrl,
+      location,
+      date,
       participants: participants.split(",").map((name) => name.trim()), // Convert string back to array
     };
 
@@ -89,6 +96,24 @@ function EventEditPage() {
           name="imageUrl"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
+        />
+
+
+        <label>Location:</label>
+        <input
+          type="text"
+          name="location"
+          value={location}
+          onChange={(e) => setlocation(e.target.value)}
+        />
+
+
+        <label>Date:</label>
+        <input
+          type="text"
+          name="date"
+          value={date}
+          onChange={(e) => setdate(e.target.value)}
         />
 
         {/* It's likely not needed or should not be editable */}

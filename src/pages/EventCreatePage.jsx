@@ -55,6 +55,7 @@ function EventCreatePage() {
   };
 
   useEffect(() => {
+	const token = localStorage.getItem("authToken");
     axios
       .get(`${API_URL}/api/users`, {
         headers: { Authorization: `Bearer ${token}` },
