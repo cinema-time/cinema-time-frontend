@@ -26,7 +26,7 @@ function EventEditPage() {
         setDescription(oneEvent.description);
         setImageUrl(oneEvent.imageUrl);
         setCreatedBy(oneEvent.createdBy ? oneEvent.createdBy.name : "");
-       setParticipants(oneEvent.participants.map(part => part.name).join(", "));
+       setParticipants(oneEvent.participants.map(part => part._id).join(", "));
       })
       .catch((error) => console.log(error));
   }, [eventId]);
