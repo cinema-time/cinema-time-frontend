@@ -27,12 +27,13 @@ axios
               <h1>{eventObj.title}</h1>
               <p>{eventObj.genre}</p>
             </Link>
-            <Link to="/events/create">
-              <button>Create New Event</button>
-            </Link>
+         
           </div>
         );
       })}
+   <Link to="/events/create">
+              <button>Create New Event</button>
+            </Link>
     </div>
   );
 }

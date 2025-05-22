@@ -27,10 +27,17 @@ function EventDetailsPage() {
     <div>
       <h1>{event.title}</h1>
       <img style={{ width: "300px", height: "auto" }} src={event.imageUrl} />
-      <p>{event.description}</p>
-      <p>Created by :{event.createdBy.name}</p>
-      <p>Who's attending?:{event.participants.name}</p>
-
+      <h3>{event.description}</h3>
+      <p>Created by: {event.createdBy.name}</p>
+      <p>
+        Who's attending: 
+        {event.participants.map((participant, index) => (
+          <span key={index}>
+            {participant.name}
+            {index < event.participants.length - 1 ? ', ' : ''}
+          </span>
+        ))}
+      </p>
       <Link to="/events">
         <button>Back to Events</button>
       </Link>

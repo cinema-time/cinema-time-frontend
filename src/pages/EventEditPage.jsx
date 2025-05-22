@@ -8,7 +8,7 @@ function EventEditPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [createdBy, setCreatedBy] = useState("");
+  const [createdBy, setCreatedBy] = useState(""); // Keep it, but consider not allowing edits here.
   const [participants, setParticipants] = useState("");
 
   const { eventId } = useParams();
@@ -25,32 +25,38 @@ function EventEditPage() {
         setTitle(oneEvent.title);
         setDescription(oneEvent.description);
         setImageUrl(oneEvent.imageUrl);
-        setCreatedBy(oneEvent.createdBy);
-        setParticipants(oneEvent.participants);
+        setCreatedBy(oneEvent.createdBy ? oneEvent.createdBy.name : "");
+       setParticipants(oneEvent.participants.map(part => part.name).join(", "));
       })
       .catch((error) => console.log(error));
   }, [eventId]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("authToken");
     const requestBody = {
       title,
       description,
       imageUrl,
-      createdBy,
-      participants,
+      participants: participants.split(",").map((name) => name.trim()), // Convert string back to array
     };
 
     axios
-      .put(`${API_URL}/api/events/${eventId}`, requestBody)
-      .then((response) => {
+      .put(`${API_URL}/api/events/${eventId}`, requestBody,{
+        headers: { Authorization: `Bearer ${token}` },
+      } )
+      .then(() => {
         navigate(`/events/${eventId}`);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   const deleteEvent = () => {
+    const token = localStorage.getItem("authToken");
     axios
-      .delete(`${API_URL}/api/events/${eventId}`)
+      .delete(`${API_URL}/api/events/${eventId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then(() => {
         navigate("/events");
       })
@@ -59,7 +65,7 @@ function EventEditPage() {
 
   return (
     <div className="EditProjectPage">
-      <h3>Edit the Project</h3>
+      <h3>Edit the Event</h3>
 
       <form onSubmit={handleFormSubmit}>
         <label>Title:</label>
@@ -77,7 +83,7 @@ function EventEditPage() {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <label>imageUrl:</label>
+        <label>Image URL:</label>
         <input
           type="URL"
           name="imageUrl"
@@ -85,14 +91,16 @@ function EventEditPage() {
           onChange={(e) => setImageUrl(e.target.value)}
         />
 
-        <label>createdBy:</label>
-        <textarea
+        {/* It's likely not needed or should not be editable */}
+        <label>Created By:</label>
+        <input
+          type="text"
           name="createdBy"
           value={createdBy}
-          onChange={(e) => setCreatedBy(e.target.value)}
+          readOnly
         />
 
-        <label>participants:</label>
+        <label>Participants:</label>
         <input
           type="text"
           name="participants"
