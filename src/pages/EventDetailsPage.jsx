@@ -5,37 +5,41 @@ import axios from "axios";
 const API_URL = "http://localhost:5005";
 
 function EventDetailsPage() {
-	const [event, setEvent] = useState(null);
-	const { eventId } = useParams();
+  const [event, setEvent] = useState(null);
+  const { eventId } = useParams();
 
-	useEffect(() => {
-		axios
-			.get(`${API_URL}/api/events/${eventId}`)
-			.then((response) => {
-				setEvent(response.data);
-			})
-			.catch((error) => console.log(error));
-	}, [eventId]);
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    axios;
+    axios
+      .get(`${API_URL}/api/events/${eventId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        setEvent(response.data);
+      })
+      .catch((error) => console.log(error));
+  }, [eventId]);
 
-	if (!event) return <div>Loading...</div>;
+  if (!event) return <div>Loading...</div>;
 
-	return (
-		<div>
-			<h1>{event.title}</h1>
-			<img style={{ width: "300px", height: "auto" }} src={event.imageUrl} />
-			<p>{event.description}</p>
-			<p>Created by :{event.createdBy.name}</p>
-			<p>Who's attending?:{event.participants.name}</p>
+  return (
+    <div>
+      <h1>{event.title}</h1>
+      <img style={{ width: "300px", height: "auto" }} src={event.imageUrl} />
+      <p>{event.description}</p>
+      <p>Created by :{event.createdBy.name}</p>
+      <p>Who's attending?:{event.participants.name}</p>
 
-			<Link to="/events">
-				<button>Back to Events</button>
-			</Link>
+      <Link to="/events">
+        <button>Back to Events</button>
+      </Link>
 
-			<Link to={`/events/edit/${eventId}`}>
-				<button>Edit Event</button>
-			</Link>
-		</div>
-	);
+      <Link to={`/events/edit/${eventId}`}>
+        <button>Edit Event</button>
+      </Link>
+    </div>
+  );
 }
 
 export default EventDetailsPage;

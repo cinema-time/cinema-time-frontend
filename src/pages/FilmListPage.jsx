@@ -20,9 +20,16 @@ function FilmListPage() {
     <div className="movie-card">
       {film.map((filmObj) => {
         return (
-            <Link to={`/films/${filmObj._id}`} key={filmObj._id} className="movie-card">
+          <Link
+            to={`/films/${filmObj._id}`}
+            key={filmObj._id}
+            className="movie-card"
+          >
             <h1>{filmObj.title}</h1>
-            <img style={{ width: '300px', height: 'auto' }}  src = {filmObj.image} />
+            <img
+              style={{ width: "300px", height: "auto" }}
+              src={filmObj.image}
+            />
             <p>{filmObj.year}</p>
             <p>{filmObj.genre}</p>
             <p>{filmObj.director}</p>
