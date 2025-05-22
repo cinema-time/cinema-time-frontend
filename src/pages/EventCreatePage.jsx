@@ -22,6 +22,7 @@ function EventCreatePage() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+	
 
     const updatedEvent = {
       ...event,
@@ -40,9 +41,12 @@ function EventCreatePage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+	const token = localStorage.getItem("authToken");
 
     axios
-      .post(`${API_URL}/api/events`, event)
+      .post(`${API_URL}/api/events`, event, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         const newEvent = response.data;
         navigate(`/events/details/${newEvent._id}`);
@@ -52,7 +56,9 @@ function EventCreatePage() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/users`)
+      .get(`${API_URL}/api/users`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         setUsers(response.data);
       })

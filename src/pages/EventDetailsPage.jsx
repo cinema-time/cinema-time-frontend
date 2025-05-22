@@ -25,12 +25,13 @@ function EventDetailsPage() {
 
   return (
     <div>
-      <h1>{event.title}</h1>
+      <h1><strong>{event.title}</strong> </h1>
       <img style={{ width: "300px", height: "auto" }} src={event.imageUrl} />
       <h3>{event.description}</h3>
-      <p>Created by: {event.createdBy.name}</p>
-      <p>
-        Who's attending: 
+      <p> <strong>Created by:</strong>  {event.createdBy.name}</p>
+     <p><strong>Where?</strong> {event.location}</p>
+	  <p>
+       <strong>Who's attending:</strong>  
         {event.participants.map((participant, index) => (
           <span key={index}>
             {participant.name}
