@@ -11,6 +11,7 @@ const DEFAULT_EVENT_FORM_VALUES = {
 	location: "",
 	date: "2030-01-01",
 	participants: "",
+	createdBy: ""
 };
 
 function EventCreatePage() {
@@ -61,7 +62,9 @@ function EventCreatePage() {
 	}, []);
 
 	return (
-<div className="EventCreatePage panel transition-all duration-300 hover:shadow-xl hover:-translate-y-1 px-6 py-10 sm:px-10 sm:py-16 mb-12 mt-12 flex flex-col relative w-full max-w-3xl mx-auto">			<form
+		<div className="EventCreatePage panel transition-all duration-300 hover:shadow-xl hover:-translate-y-1 px-6 py-10 sm:px-10 sm:py-16 mb-12 mt-12 flex flex-col relative w-full max-w-3xl mx-auto">
+			{" "}
+			<form
 				onSubmit={handleSubmit}
 				className="grid grid-cols-1 gap-4 overflow-y-auto mt-12 px-4"
 			>
@@ -119,14 +122,15 @@ function EventCreatePage() {
 					<option value="">-- Select Friend --</option>
 					{users.map((user) => (
 						<option key={user._id} value={user._id}>
-							{user.name} 
+							{user.name}
 						</option>
 					))}
 				</select>
 
 				<button
 					type="submit"
-					className="font-mono tracking-wider uppercase border border-accent-color bg-transparent text-accent-color px-5 py-2 rounded-lg hover:bg-accent-color hover:text-bg-color transition-all">
+					className="font-mono tracking-wider uppercase border border-accent-color bg-transparent text-accent-color px-5 py-2 rounded-lg hover:bg-accent-color hover:text-bg-color transition-all"
+				>
 					Create event
 				</button>
 			</form>

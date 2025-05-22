@@ -7,9 +7,19 @@ const API_URL = "http://localhost:5005";
 function EventListPage() {
   const [event, setEvent] = useState([]);
 
+  const getAllEvents = () => {
+    axios
+     .get(
+     `${API_URL}/events`,
+     { headers: { Authorization: `Bearer ${storedToken}` } }
+   )
+     .then((response) => setProjects(response.data))
+     .catch((error) => console.log(error));
+ };
+
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/event`)
+      .get(`${API_URL}/events`)
       .then((response) => {
         setEvent(response.data);
       })
