@@ -153,3 +153,8 @@ input:focus, textarea:focus, select:focus {
 .glow-animated {
   animation: pulse-glow 2s infinite;
 }
+
+.EditProjectPage{
+  max-width: 80%;
+  align-items: center;
+}

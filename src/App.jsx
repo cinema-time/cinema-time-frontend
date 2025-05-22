@@ -12,10 +12,13 @@ import "./App.css";
 import EventCreatePage from "./pages/EventCreatePage";
 import EventDetailsPage from "./pages/EventDetailsPage";
 import EventListPage from "./pages/EventListPage";
+import '@mantine/core/styles.css';
+import { MantineProvider } from '@mantine/core';
 
 function App() {
   return (
     <>
+    <MantineProvider>
       <NavBar />
 
       <Routes>
@@ -31,6 +34,7 @@ function App() {
         <Route path="/about" element={<About />} />
       </Routes>
       <Footer />
+      </MantineProvider>
     </>
   );
 }

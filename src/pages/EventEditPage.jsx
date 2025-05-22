@@ -11,7 +11,8 @@ function EventEditPage() {
   const [location, setlocation] = useState("");
   const [date, setdate] = useState("");
   const [createdBy, setCreatedBy] = useState(""); // Keep it, but consider not allowing edits here.
-  const [participants, setParticipants] = useState("");
+  const [participants, setParticipants] = useState(""); // For displaying names
+  const [participantIds, setParticipantIds] = useState([]); // For submission // for backend
 
   const { eventId } = useParams();
   const navigate = useNavigate();
@@ -30,8 +31,8 @@ function EventEditPage() {
         setlocation(oneEvent.location);
         setdate(oneEvent.date);
         setCreatedBy(oneEvent.createdBy ? oneEvent.createdBy.name : "");
-       setParticipants(oneEvent.participants.map(part => part._id).join(", "));
-       
+        setParticipants(oneEvent.participants.map((p) => p.name).join(", "));
+        setParticipantIds(oneEvent.participants.map((p) => p._id));
       })
       .catch((error) => console.log(error));
   }, [eventId]);
@@ -45,13 +46,13 @@ function EventEditPage() {
       imageUrl,
       location,
       date,
-      participants: participants.split(",").map((name) => name.trim()), // Convert string back to array
+      participants:participantIds,
     };
 
     axios
-      .put(`${API_URL}/api/events/${eventId}`, requestBody,{
+      .put(`${API_URL}/api/events/${eventId}`, requestBody, {
         headers: { Authorization: `Bearer ${token}` },
-      } )
+      })
       .then(() => {
         navigate(`/events/${eventId}`);
       })
@@ -98,7 +99,6 @@ function EventEditPage() {
           onChange={(e) => setImageUrl(e.target.value)}
         />
 
-
         <label>Location:</label>
         <input
           type="text"
@@ -106,7 +106,6 @@ function EventEditPage() {
           value={location}
           onChange={(e) => setlocation(e.target.value)}
         />
-
 
         <label>Date:</label>
         <input
@@ -118,20 +117,15 @@ function EventEditPage() {
 
         {/* It's likely not needed or should not be editable */}
         <label>Created By:</label>
-        <input
-          type="text"
-          name="createdBy"
-          value={createdBy}
-          readOnly
-        />
+        <input type="text" name="createdBy" value={createdBy} readOnly />
 
         <label>Participants:</label>
-        <input
-          type="text"
-          name="participants"
-          value={participants}
-          onChange={(e) => setParticipants(e.target.value)}
-        />
+          <input
+            type="text"
+            name="participants"
+            value={participants}
+            onChange={(e) => setParticipants(e.target.value)}
+          />
 
         <button type="submit">Update Event</button>
       </form>

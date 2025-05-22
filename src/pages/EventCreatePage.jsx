@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { createEventSlug, convertSlugToName } from "../utils/index";
+import { MultiSelect } from '@mantine/core';
+
+
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -9,8 +12,8 @@ const DEFAULT_EVENT_FORM_VALUES = {
   title: "",
   description: "",
   location: "",
-  date: "2030-01-01",
-  participants: "",
+  date: "2025-01-01T12:00",
+  participants: [],
   createdBy: "",
 };
 
@@ -22,7 +25,6 @@ function EventCreatePage() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-	
 
     const updatedEvent = {
       ...event,
@@ -41,7 +43,7 @@ function EventCreatePage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-	const token = localStorage.getItem("authToken");
+    const token = localStorage.getItem("authToken");
 
     axios
       .post(`${API_URL}/api/events`, event, {
@@ -55,7 +57,7 @@ function EventCreatePage() {
   };
 
   useEffect(() => {
-	const token = localStorage.getItem("authToken");
+    const token = localStorage.getItem("authToken");
     axios
       .get(`${API_URL}/api/users`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -111,7 +113,7 @@ function EventCreatePage() {
 
         <label htmlFor="date">When?</label>
         <input
-          type="date"
+          type="datetime-local"
           name="date"
           id="date"
           value={event.date}
@@ -119,20 +121,23 @@ function EventCreatePage() {
           className="bg-gray-800 border border-gray-600 text-gray-100 rounded-md p-3 w-full mb-6 focus:outline-none focus:ring-2 focus:ring-purple-500"
         />
         <label htmlFor="participants">Who's in?</label>
-        <select
-          name="participants"
-          id="participants"
+        <MultiSelect
+          data={users.map((user) => ({
+            value: user._id,
+            label: user.name,
+          }))}
           value={event.participants}
-          onChange={handleChange}
-          className="bg-gray-800 border border-gray-600 text-gray-100 rounded-md p-3 w-full mb-6 focus:outline-none focus:ring-2 focus:ring-purple-500 "
-        >
-          <option value="">-- Select Friend --</option>
-          {users.map((user) => (
-            <option key={user._id} value={user._id}>
-              {user.name}
-            </option>
-          ))}
-        </select>
+          onChange={(selected) =>
+            setEvent((prev) => ({ ...prev, participants: selected }))
+          }
+          placeholder="Select participants"
+          searchable
+          clearable
+          nothingFound="No users found"
+          classNames={{
+            input: "bg-gray-800 border border-gray-600 text-gray-100 p-3",
+          }}
+        />
 
         <button
           type="submit"
