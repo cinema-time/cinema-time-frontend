@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import { Card, Text, Image, Button, Badge, Group } from "@mantine/core";
 
 const API_URL = "http://localhost:5005";
 
@@ -10,7 +11,6 @@ function EventDetailsPage() {
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
-    axios;
     axios
       .get(`${API_URL}/api/events/${eventId}`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -21,31 +21,111 @@ function EventDetailsPage() {
       .catch((error) => console.log(error));
   }, [eventId]);
 
-  if (!event) return <div>Loading...</div>;
+  if (!event)
+    return (
+      <div
+        style={{
+          backgroundColor: "#0f0f0f",
+          color: "#fff",
+          minHeight: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text>Loading...</Text>
+      </div>
+    );
 
   return (
-    <div>
-      <h1><strong>{event.title}</strong> </h1>
-      <img style={{ width: "300px", height: "auto" }} src={event.imageUrl} />
-      <h3>{event.description}</h3>
-      <p> <strong>Created by:</strong>  {event.createdBy.name}</p>
-     <p><strong>Where?</strong> {event.location}</p>
-	  <p>
-       <strong>Who's attending:</strong>  
-        {event.participants.map((participant, index) => (
-          <span key={index}>
-            {participant.name}
-            {index < event.participants.length - 1 ? ', ' : ''}
-          </span>
-        ))}
-      </p>
-      <Link to="/events">
-        <button>Back to Events</button>
-      </Link>
+    <div
+      style={{
+        backgroundColor: "#0f0f0f",
+        minHeight: "100vh",
+        padding: "2rem",
+        color: "#fff",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <Card
+        shadow="sm"
+        padding="lg"
+        radius="md"
+        withBorder
+        style={{
+          maxWidth: 500,
+          width: "100%",
+          backgroundColor: "#1c1c1e",
+          color: "#f1f1f1",
+        }}
+      >
+        <Text size="xl" fw={700} mt="sm">
+          {event.title}
+        </Text>
 
-      <Link to={`/events/edit/${eventId}`}>
-        <button>Edit Event</button>
-      </Link>
+        <Text mt="xs" c="dimmed" size="sm">
+          {event.description}
+        </Text>
+
+        <Text mt="md">
+          <strong>Created by:</strong> {event.createdBy?.name}
+        </Text>
+
+        <Text>
+          <strong>Where?</strong> {event.location}
+        </Text>
+
+        <Text>
+          <strong>Who's attending:</strong>
+        </Text>
+
+        <Group mt="xs" spacing="xs" wrap="wrap">
+          {event.participants.map((participant, index) => (
+            <Badge
+              key={index}
+              color="blue"
+              variant="light"
+              style={{ marginBottom: "5px" }}
+            >
+              {participant.name}
+            </Badge>
+          ))}
+        </Group>
+
+        <Group mt="lg" spacing="md">
+          <Link to="/events">
+            <Button variant="outline" color="gray">
+              Back to Events
+            </Button>
+          </Link>
+          <Link to={`/events/edit/${eventId}`}>
+            <Button variant="filled" color="blue">
+              Edit Event
+            </Button>
+          </Link>
+        </Group>
+
+        {event.imageUrl && (
+          <Card.Section
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              paddingTop: "1.5rem",
+            }}
+          >
+            <Image
+              src={event.imageUrl}
+              height={120}
+              width={180}
+              fit="cover"
+              radius="sm"
+              alt={event.title}
+              withPlaceholder
+            />
+          </Card.Section>
+        )}
+      </Card>
     </div>
   );
 }
