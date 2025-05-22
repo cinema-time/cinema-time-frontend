@@ -14,26 +14,25 @@ import EventDetailsPage from "./pages/EventDetailsPage";
 import EventListPage from "./pages/EventListPage";
 
 function App() {
-	return (
-		<>
-			<NavBar />
+  return (
+    <>
+      <NavBar />
 
-			<h1 className="text-3xl font-bold underline">Hello world!</h1>
-
-			<Routes>
-				<Route path="/" element={<LoginPage />} />
-				<Route path="/signup" element={<SignupPage />} />
-				<Route path="/films/:filmId" element={<FilmDetailsPage />} />
-				<Route path="/filmlist" element={<FilmListPage />} />
-				<Route path="/events" element={<EventListPage />} />
-				<Route path="/events/create" element={<EventCreatePage />} />
-				<Route path="/events/:eventId" element={<EventDetailsPage />} />
-				<Route path="/events/edit/:eventId" element={<EventEditPage />} />
-				<Route path="/about" element={<About />} />
-			</Routes>
-			<Footer />
-		</>
-	);
+      <Routes>
+        <Route path="/" element={<EventListPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/films/:filmId" element={<FilmDetailsPage />} />
+        <Route path="/filmlist" element={<FilmListPage />} />
+        <Route path="/events" element={<EventListPage />} />
+        <Route path="/events/create" element={<EventCreatePage />} />
+        <Route path="/events/:eventId" element={<EventDetailsPage />} />
+        <Route path="/events/edit/:eventId" element={<EventEditPage />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+      <Footer />
+    </>
+  );
 }
 
 export default App;
