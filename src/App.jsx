@@ -22,23 +22,23 @@ import HomePage from "./pages/Homepage";
 function App() {
   return (
     <>
-      <MantineProvider>
-        <NavBar />
+    <MantineProvider>
+      <NavBar />
 
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/films/:filmId" element={<FilmDetailsPage />} />
-          <Route path="/filmlist" element={<FilmListPage />} />
-          <Route path="/events" element={<EventListPage />} />
-          <Route path="/events/create" element={<EventCreatePage />} />
-          <Route path="/events/:eventId" element={<EventDetailsPage />} />
-          <Route path="/events/edit/:eventId" element={<EventEditPage />} />
-          <Route path="/users" element={<UserProfilePage />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-        <Footer />
+      <Routes>
+        <Route path="/" element={<EventListPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/films/:filmId" element={<FilmDetailsPage />} />
+        <Route path="/filmlist" element={<FilmListPage />} />
+        <Route path="/events" element={<EventListPage />} />
+        <Route path="/events/create" element={<EventCreatePage />} />
+        <Route path="/events/:eventId" element={<EventDetailsPage />} />
+        <Route path="/events/edit/:eventId" element={<EventEditPage />} />
+		<Route path="/users" element={<UserProfilePage />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+      <Footer />
       </MantineProvider>
     </>
   );
