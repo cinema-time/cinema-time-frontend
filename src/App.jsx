@@ -14,8 +14,8 @@ import EventDetailsPage from "./pages/EventDetailsPage";
 import EventListPage from "./pages/EventListPage";
 import "@mantine/core/styles.css";
 import { MantineProvider } from "@mantine/core";
-import UserProfilePage from "./pages/UserProfilePage";
 import HomePage from "./pages/Homepage";
+import UserProfilePage from "./pages/UserProfilePage"
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/dropzone/styles.css';
@@ -32,13 +32,13 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/users/my-profile" element={<UserProfilePage />} />
         <Route path="/films/:filmId" element={<FilmDetailsPage />} />
         <Route path="/filmlist" element={<FilmListPage />} />
         <Route path="/events" element={<EventListPage />} />
         <Route path="/events/create" element={<EventCreatePage />} />
         <Route path="/events/:eventId" element={<EventDetailsPage />} />
         <Route path="/events/edit/:eventId" element={<EventEditPage />} />
-		<Route path="/users" element={<UserProfilePage />} />
         <Route path="/about" element={<About />} />
       </Routes>
       <Footer />

@@ -52,7 +52,7 @@ function Navbar() {
 									{/* Dropdown Menu */}
 									<div className="absolute right-0 mt-2 w-40 bg-gray-800 rounded shadow-lg hidden group-hover:block z-10">
 										<Link
-											to={`/user/details/${user._id}`}
+											to={`/users/my-profile`}
 											className="block px-4 py-2 text-sm text-white hover:bg-gray-700"
 										>
 											Profile

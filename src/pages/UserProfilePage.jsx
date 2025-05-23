@@ -1,64 +1,64 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import placeholderImage from "./../assets/placeholder.png";
-import { AuthContext } from "../context/auth.context";
+import placeholderImage from "./../assets/placeholder.png"; // adjust path if needed
 
-// Import the string from the .env with URL of the API/server - http://localhost:5005
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = "http://localhost:5005/api"; // your backend URL
 
 function UserProfilePage() {
-  const [userProfile, setUserProfile] = useState(null);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { user } = useContext(AuthContext);
-  const [errorMessage, setErrorMessage] = useState(undefined);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getUser = () => {
-      const storedToken = localStorage.getItem("authToken");
+    const fetchUserProfile = async () => {
+      const token = localStorage.getItem("authToken");
 
-      if (storedToken) {
-        axios
-          .get(`${API_URL}/api/users/${user._id}`, {
-            headers: { Authorization: `Bearer ${storedToken}` },
-          })
-          .then((response) => {
-            setUserProfile(response.data);
-            setLoading(false);
-          })
-          .catch((error) => {
-            const errorDescription = error.response.data.message;
-            setErrorMessage(errorDescription);
-          });
-      } else {
-        setErrorMessage("User not logged in");
+      if (!token) {
+        setError("User not logged in");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await axios.get(`${API_URL}/users/my-profile`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(response.data);
+      } catch (err) {
+        setError(
+          err.response?.data?.message ||
+          err.response?.data?.error ||
+          "Failed to fetch user profile"
+        );
+      } finally {
+        setLoading(false);
       }
     };
 
-    getUser();
-  }, [user._id]);
-
-  if (errorMessage) return <div>{errorMessage}</div>;
+    fetchUserProfile();
+  }, []);
 
   if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className="StudentDetailsPage bg-gray-100 py-6 px-4">
       <div className="bg-white p-8 rounded-lg shadow-md mb-6">
-        {userProfile && (
+        {user && (
           <>
-            {/* <img className="w-32 h-32 rounded-full object-cover mb-4" src={student.image} alt="profile-photo" /> */}
             <img
               src={placeholderImage}
               alt="profile-photo"
               className="rounded-full w-32 h-32 object-cover border-2 border-gray-300"
             />
             <h1 className="text-2xl mt-4 font-bold absolute">
-              {userProfile.name}
+              {user.name}
             </h1>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-24 mb-4 border-b pb-4">
               <p className="text-left mb-2 border-b pb-2">
-                <strong>Email:</strong> {userProfile.email}
+                <strong>Email:</strong> {user.email || "Not provided"}
               </p>
             </div>
           </>
@@ -69,3 +69,5 @@ function UserProfilePage() {
 }
 
 export default UserProfilePage;
+
+
