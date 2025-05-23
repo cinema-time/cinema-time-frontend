@@ -16,6 +16,8 @@ import "@mantine/core/styles.css";
 import { MantineProvider } from "@mantine/core";
 import UserProfilePage from "./pages/UserProfilePage";
 import HomePage from "./pages/Homepage";
+import '@mantine/core/styles.css';
+import '@mantine/carousel/styles.css';
 
 
 
