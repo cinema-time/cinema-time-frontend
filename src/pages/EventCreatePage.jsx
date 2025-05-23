@@ -51,7 +51,7 @@ function EventCreatePage() {
       })
       .then((response) => {
         const newEvent = response.data;
-        navigate(`/events/details/${newEvent._id}`);
+        navigate(`/events`);
       })
       .catch((error) => console.log(error));
   };
