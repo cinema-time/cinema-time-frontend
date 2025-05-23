@@ -28,16 +28,8 @@ function EventListPage() {
         padding: "2rem",
         color: "#fff",
       }}
-      
     >
       <h1 style={{ fontSize: "2rem", marginBottom: "2rem" }}>All Events</h1>
-         <div style={{ marginTop: "20px", textAlign: "center" }}>
-        <Link to="/events/create">
-          <Button variant="filled" color="blue">
-            Create New Event
-          </Button>
-        </Link>
-      </div>
       <Grid gutter="md">
         {event.map((eventObj) => (
           <Grid.Col key={eventObj._id} span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
@@ -77,7 +69,13 @@ function EventListPage() {
         ))}
       </Grid>
 
-   
+      <div style={{ marginTop: "20px", textAlign: "center" }}>
+        <Link to="/events/create">
+          <Button variant="filled" color="blue">
+            Create New Event
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }
