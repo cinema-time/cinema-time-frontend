@@ -158,3 +158,43 @@ input:focus, textarea:focus, select:focus {
   max-width: 80%;
   align-items: center;
 }
+
+.carousel-container {
+  text-align: center;
+  padding: 0 20px; /* Optional: for some padding around the carousel */
+}
+
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #151414; /* Light gray background for the card */
+  max-width: 500px; /* Increased width of the card */
+  margin: auto;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.card-content h3 {
+  margin: 0;
+  font-size: 1.8em; /* Slightly larger font size */
+}
+
+.card-content p {
+  color: #fdf9f9; /* Darker text color for better readability */
+}
+
+h1, h3 {
+  text-align: center;
+  margin: 10px 0;
+}

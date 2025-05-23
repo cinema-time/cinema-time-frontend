@@ -28,7 +28,7 @@ function HomePage() {
             <img src={filmObj.image} alt={filmObj.title} />
             <div className="card-content">
               <h3>{filmObj.title}</h3>
-              <p>{filmObj.description}</p> {/* Assuming there is a description field */}
+              <p>{filmObj.description}</p>
             </div>
           </div>
         ))}
