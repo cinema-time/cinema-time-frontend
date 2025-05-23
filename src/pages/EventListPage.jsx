@@ -56,7 +56,7 @@ function EventListPage() {
                       fit="cover"
                       radius="sm"
                       alt={eventObj.title}
-                      withPlaceholder
+                     
                     />
                   </Card.Section>
                 )}

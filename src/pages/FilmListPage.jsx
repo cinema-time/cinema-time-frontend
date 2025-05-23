@@ -53,7 +53,7 @@ function FilmListPage() {
                       fit="cover"
                       radius="sm"
                       alt={filmObj.title}
-                      withPlaceholder
+                     
                     />
                   </Card.Section>
                 )}

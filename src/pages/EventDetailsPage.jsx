@@ -121,7 +121,7 @@ function EventDetailsPage() {
               fit="cover"
               radius="sm"
               alt={event.title}
-              withPlaceholder
+              
             />
           </Card.Section>
         )}

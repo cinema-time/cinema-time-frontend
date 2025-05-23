@@ -14,6 +14,7 @@ import EventDetailsPage from "./pages/EventDetailsPage";
 import EventListPage from "./pages/EventListPage";
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
+import UserProfilePage from "./pages/UserProfilePage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/events/create" element={<EventCreatePage />} />
         <Route path="/events/:eventId" element={<EventDetailsPage />} />
         <Route path="/events/edit/:eventId" element={<EventEditPage />} />
+		<Route path="/users" element={<UserProfilePage />} />
         <Route path="/about" element={<About />} />
       </Routes>
       <Footer />
