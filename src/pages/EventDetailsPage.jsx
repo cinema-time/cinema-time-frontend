@@ -115,7 +115,7 @@ function EventDetailsPage() {
             }}
           >
             <Image
-              src={event.imageUrl}
+             src={`${API_URL}${event.imageUrl}?t=${new Date().getTime()}`}
               height={120}
               width={180}
               fit="cover"

@@ -58,7 +58,7 @@ function EventListPage() {
                 {eventObj.imageUrl && (
                   <Card.Section>
                     <Image
-                      src={eventObj.imageUrl}
+                      src={`${API_URL}${eventObj.imageUrl}`}
                       height={160}
                       width="100%"
                       fit="cover"
