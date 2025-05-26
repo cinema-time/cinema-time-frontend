@@ -68,7 +68,7 @@ function EventEditPage() {
           Pragma: "no-cache",
         },
       });
-  
+  localStorage.setItem("showToast", "Event updated successfully!");
       navigate(`/events/${eventId}`);
     } catch (err) {
       console.log(err);
@@ -84,6 +84,7 @@ function EventEditPage() {
 				headers: { Authorization: `Bearer ${token}` },
 			})
 			.then(() => {
+				localStorage.setItem("showToast", "Event deleted successfully!");
 				navigate("/events");
 			})
 			.catch((err) => console.log(err));

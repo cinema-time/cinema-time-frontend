@@ -6,6 +6,7 @@ import { MultiSelect } from "@mantine/core";
 import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
 import { IconUpload, IconPhoto, IconX } from "@tabler/icons-react";
 import { Group, Text } from "@mantine/core";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -68,7 +69,9 @@ function EventCreatePage() {
           "Content-Type": "multipart/form-data",
         },
       });
-      navigate(`/events`);
+
+      localStorage.setItem("showToast", "Event created!");
+      navigate("/events");
     } catch (error) {
       console.error(error);
       alert("Something went wrong while creating the event.");
@@ -166,15 +169,32 @@ function EventCreatePage() {
           maxSize={5 * 1024 ** 2}
           accept={IMAGE_MIME_TYPE}
         >
-          <Group justify="center" gap="xl" mih={220} style={{ pointerEvents: "none" }}>
+          <Group
+            justify="center"
+            gap="xl"
+            mih={220}
+            style={{ pointerEvents: "none" }}
+          >
             <Dropzone.Accept>
-              <IconUpload size={52} color="var(--mantine-color-blue-6)" stroke={1.5} />
+              <IconUpload
+                size={52}
+                color="var(--mantine-color-blue-6)"
+                stroke={1.5}
+              />
             </Dropzone.Accept>
             <Dropzone.Reject>
-              <IconX size={52} color="var(--mantine-color-red-6)" stroke={1.5} />
+              <IconX
+                size={52}
+                color="var(--mantine-color-red-6)"
+                stroke={1.5}
+              />
             </Dropzone.Reject>
             <Dropzone.Idle>
-              <IconPhoto size={52} color="var(--mantine-color-dimmed)" stroke={1.5} />
+              <IconPhoto
+                size={52}
+                color="var(--mantine-color-dimmed)"
+                stroke={1.5}
+              />
             </Dropzone.Idle>
 
             <div>

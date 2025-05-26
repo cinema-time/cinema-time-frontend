@@ -15,33 +15,47 @@ import EventListPage from "./pages/EventListPage";
 import "@mantine/core/styles.css";
 import { MantineProvider } from "@mantine/core";
 import HomePage from "./pages/Homepage";
-import UserProfilePage from "./pages/UserProfilePage"
-import '@mantine/core/styles.css';
-import '@mantine/carousel/styles.css';
-import '@mantine/dropzone/styles.css';
-
+import UserProfilePage from "./pages/UserProfilePage";
+import "@mantine/core/styles.css";
+import "@mantine/carousel/styles.css";
+import "@mantine/dropzone/styles.css";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
   return (
     <>
-    <MantineProvider>
-      <NavBar />
+      <MantineProvider>
+        <NavBar />
 
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/users/my-profile" element={<UserProfilePage />} />
-        <Route path="/films/:filmId" element={<FilmDetailsPage />} />
-        <Route path="/filmlist" element={<FilmListPage />} />
-        <Route path="/events" element={<EventListPage />} />
-        <Route path="/events/create" element={<EventCreatePage />} />
-        <Route path="/events/:eventId" element={<EventDetailsPage />} />
-        <Route path="/events/edit/:eventId" element={<EventEditPage />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-      <Footer />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/users/my-profile" element={<UserProfilePage />} />
+          <Route path="/films/:filmId" element={<FilmDetailsPage />} />
+          <Route path="/filmlist" element={<FilmListPage />} />
+          <Route path="/events" element={<EventListPage />} />
+          <Route path="/events/create" element={<EventCreatePage />} />
+          <Route path="/events/:eventId" element={<EventDetailsPage />} />
+          <Route path="/events/edit/:eventId" element={<EventEditPage />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+        <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+        <Footer />
+         
       </MantineProvider>
     </>
   );

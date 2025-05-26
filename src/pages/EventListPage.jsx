@@ -1,12 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Grid, Card, Text, Button, Image } from "@mantine/core";
+import { toast } from "react-toastify";
 
 const API_URL = "http://localhost:5005";
 
 function EventListPage() {
   const [event, setEvent] = useState([]);
+  const toastShown = useRef(false);
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -20,6 +22,15 @@ function EventListPage() {
       .catch((e) => console.log("Error getting events from the API...", e));
   }, []);
 
+  useEffect(() => {
+    const message = localStorage.getItem("showToast");
+    if (message && !toastShown.current) {
+      toast.success(message);
+      localStorage.removeItem("showToast");
+      toastShown.current = true;
+    }
+  }, []);
+
   return (
     <div
       style={{
@@ -28,20 +39,27 @@ function EventListPage() {
         padding: "2rem",
         color: "#fff",
       }}
-      
     >
       <h1 style={{ fontSize: "2rem", marginBottom: "2rem" }}>All Events</h1>
-         <div style={{ marginTop: "20px", textAlign: "center" }}>
+
+      <div style={{ marginTop: "20px", textAlign: "center" }}>
         <Link to="/events/create">
           <Button variant="filled" color="blue">
             Create New Event
           </Button>
         </Link>
       </div>
+
       <Grid gutter="md">
         {event.map((eventObj) => (
-          <Grid.Col key={eventObj._id} span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
-            <Link to={`/events/${eventObj._id}`} style={{ textDecoration: "none" }}>
+          <Grid.Col
+            key={eventObj._id}
+            span={{ base: 12, sm: 6, md: 4, lg: 3 }}
+          >
+            <Link
+              to={`/events/${eventObj._id}`}
+              style={{ textDecoration: "none" }}
+            >
               <Card
                 shadow="sm"
                 padding="lg"
@@ -64,7 +82,6 @@ function EventListPage() {
                       fit="cover"
                       radius="sm"
                       alt={eventObj.title}
-                     
                     />
                   </Card.Section>
                 )}
@@ -76,8 +93,6 @@ function EventListPage() {
           </Grid.Col>
         ))}
       </Grid>
-
-   
     </div>
   );
 }

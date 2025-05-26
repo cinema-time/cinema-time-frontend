@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { Card, Text, Image, Button, Badge, Group } from "@mantine/core";
+import { toast } from "react-toastify"; // ✅ no ToastContainer
 
 const API_URL = "http://localhost:5005";
 
@@ -20,6 +21,14 @@ function EventDetailsPage() {
       })
       .catch((error) => console.log(error));
   }, [eventId]);
+
+  useEffect(() => {
+    const message = localStorage.getItem("showToast");
+    if (message) {
+      toast.success(message);
+      localStorage.removeItem("showToast");
+    }
+  }, []);
 
   if (!event)
     return (
@@ -115,13 +124,12 @@ function EventDetailsPage() {
             }}
           >
             <Image
-             src={`${API_URL}${event.imageUrl}?t=${new Date().getTime()}`}
+              src={`${API_URL}${event.imageUrl}?t=${new Date().getTime()}`}
               height={120}
               width={180}
               fit="cover"
               radius="sm"
               alt={event.title}
-              
             />
           </Card.Section>
         )}
