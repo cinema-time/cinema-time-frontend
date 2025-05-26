@@ -88,6 +88,11 @@ function EventListPage() {
                 <Text size="lg" fw={600} mt="sm">
                   {eventObj.title}
                 </Text>
+                {eventObj.film && eventObj.film.title && (
+                  <Text size="me" mt="xs" c="dimmed">
+                    We will be watching: <strong>{eventObj.film.title}</strong>
+                  </Text>
+                )}
               </Card>
             </Link>
           </Grid.Col>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { Card, Text, Image, Button, Badge, Group } from "@mantine/core";
-import { toast } from "react-toastify"; // ✅ no ToastContainer
+import { toast } from "react-toastify";
 
 const API_URL = "http://localhost:5005";
 
@@ -84,6 +84,12 @@ function EventDetailsPage() {
         <Text>
           <strong>Where?</strong> {event.location}
         </Text>
+
+        {event.film && (
+          <Text>
+            <strong>Film:</strong> {event.film.title}
+          </Text>
+        )}
 
         <Text>
           <strong>Who's attending:</strong>

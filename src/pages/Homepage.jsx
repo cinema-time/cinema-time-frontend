@@ -22,7 +22,7 @@ function HomePage() {
       <h1>Welcome to Cinema Time</h1>
       <h2>NOW SHOWING</h2>
       {film.length > 0 && (
-        <Carousel autoPlay interval={3000} infiniteLoop showThumbs={false}>
+        <Carousel autoPlay interval={5000} infiniteLoop showThumbs={false}>
           {film.map((filmObj) => (
             <div key={filmObj.id} className="card">
               <img src={filmObj.image} alt={filmObj.title} />

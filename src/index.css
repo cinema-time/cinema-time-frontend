@@ -198,3 +198,72 @@ h1, h3 {
   text-align: center;
   margin: 10px 0;
 }
+
+.logo {
+  font-size: 3.5rem;
+  font-weight: bold;
+  font-family: 'Inter', sans-serif;
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.page-container {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.profile-card {
+  max-width: 600px;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border-color);
+  background-color: var(--panel-color);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.profile-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--accent-color);
+  margin-bottom: 1.5rem;
+}
+
+.profile-name {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.profile-info {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+}
+
+.error-text {
+  color: var(--danger);
+}
+
+
+
+
+.app-footer {
+  background-color: var(--panel-color);
+  border-top: 1px solid var(--border-color);
+  padding: 1rem;
+  margin-top: 2rem;
+  text-align: center;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}

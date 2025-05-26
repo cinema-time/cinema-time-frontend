@@ -22,8 +22,11 @@ const DEFAULT_EVENT_FORM_VALUES = {
 function EventCreatePage() {
   const [event, setEvent] = useState({ ...DEFAULT_EVENT_FORM_VALUES });
   const [users, setUsers] = useState([]);
+  const [films, setFilms] = useState([]); // <-- Added films state here
   const [imageFile, setImageFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [filmId, setFilmId] = useState("");
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -60,6 +63,7 @@ function EventCreatePage() {
     formData.append("date", event.date);
     formData.append("location", event.location);
     formData.append("participants", JSON.stringify(event.participants));
+    formData.append("film", filmId); // <-- Append film id here
     if (imageFile) formData.append("image", imageFile);
 
     try {
@@ -88,6 +92,16 @@ function EventCreatePage() {
       })
       .then((response) => setUsers(response.data))
       .catch((error) => console.error("Error fetching users:", error));
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    axios
+      .get(`${API_URL}/api/film`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => setFilms(response.data)) // <-- Set films here
+      .catch(console.error);
   }, []);
 
   return (
@@ -142,6 +156,22 @@ function EventCreatePage() {
           required
           className="bg-gray-800 border border-gray-600 text-gray-100 rounded-md p-3 w-full mb-6 focus:outline-none focus:ring-2 focus:ring-purple-500"
         />
+
+        <label label htmlFor= "film">Film:</label>
+        <select
+          name="film"
+          value={filmId}
+          onChange={(e) => setFilmId(e.target.value)}
+          required
+          className="bg-gray-800 border border-gray-600 text-gray-100 rounded-md p-3 w-full mb-6"
+        >
+          <option value="">-- Select a Film --</option>
+          {films.map((filmObj) => (
+            <option key={filmObj._id} value={filmObj._id}>
+              {filmObj.title}
+            </option>
+          ))}
+        </select>
 
         <label htmlFor="participants">Who's in?</label>
         <MultiSelect

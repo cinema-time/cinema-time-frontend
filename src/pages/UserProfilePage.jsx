@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import placeholderImage from "./../assets/placeholder.png"; // adjust path if needed
+import placeholderImage from "./../assets/placeholder.png";
 
-const API_URL = "http://localhost:5005/api"; // your backend URL
+const API_URL = "http://localhost:5005/api";
 
 function UserProfilePage() {
   const [user, setUser] = useState(null);
@@ -29,8 +29,8 @@ function UserProfilePage() {
       } catch (err) {
         setError(
           err.response?.data?.message ||
-          err.response?.data?.error ||
-          "Failed to fetch user profile"
+            err.response?.data?.error ||
+            "Failed to fetch user profile"
         );
       } finally {
         setLoading(false);
@@ -40,24 +40,22 @@ function UserProfilePage() {
     fetchUserProfile();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (loading) return <div className="page-container">Loading...</div>;
+  if (error) return <div className="page-container error-text">{error}</div>;
 
   return (
-    <div className="StudentDetailsPage bg-gray-100 py-6 px-4">
-      <div className="bg-white p-8 rounded-lg shadow-md mb-6">
+    <div className="page-container">
+      <div className="profile-card panel">
         {user && (
           <>
             <img
               src={placeholderImage}
-              alt="profile-photo"
-              className="rounded-full w-32 h-32 object-cover border-2 border-gray-300"
+              alt="profile"
+              className="profile-image"
             />
-            <h1 className="text-2xl mt-4 font-bold absolute">
-              {user.name}
-            </h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-24 mb-4 border-b pb-4">
-              <p className="text-left mb-2 border-b pb-2">
+            <h1 className="profile-name">{user.name}</h1>
+            <div className="profile-info">
+              <p>
                 <strong>Email:</strong> {user.email || "Not provided"}
               </p>
             </div>
@@ -69,5 +67,3 @@ function UserProfilePage() {
 }
 
 export default UserProfilePage;
-
-
