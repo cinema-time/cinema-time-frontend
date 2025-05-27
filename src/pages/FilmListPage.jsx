@@ -29,7 +29,10 @@ function FilmListPage() {
         film.filter(
           (film) =>
             film.title.toLowerCase().includes(value) ||
-            film.description.toLowerCase().includes(value)
+            film.description.toLowerCase().includes(value)||
+            film.genre.toLowerCase().includes(value)||
+            film.director.toLowerCase().includes(value)||
+            film.year.toString().includes(value)
         )
 
       );
