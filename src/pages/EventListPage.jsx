@@ -42,9 +42,9 @@ function EventListPage() {
     >
       <h1 style={{ fontSize: "2rem", marginBottom: "2rem" }}>All Events</h1>
 
-      <div style={{ marginTop: "20px", textAlign: "center" }}>
+      <div style={{ textAlign: "center" }}>
         <Link to="/events/create">
-          <Button variant="filled" color="blue">
+          <Button >
             Create New Event
           </Button>
         </Link>
