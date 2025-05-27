@@ -22,7 +22,7 @@ const DEFAULT_EVENT_FORM_VALUES = {
 function EventCreatePage() {
   const [event, setEvent] = useState({ ...DEFAULT_EVENT_FORM_VALUES });
   const [users, setUsers] = useState([]);
-  const [films, setFilms] = useState([]); // <-- Added films state here
+  const [films, setFilms] = useState([]); 
   const [imageFile, setImageFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [filmId, setFilmId] = useState("");
@@ -126,10 +126,11 @@ function EventCreatePage() {
         />
 
         <label htmlFor="description">Description</label>
-        <input
+        <textarea
           type="text"
           name="description"
           id="description"
+          rows={4} cols={30}
           value={event.description}
           onChange={handleChange}
           className="bg-gray-800 border border-gray-600 text-gray-100 rounded-md p-3 w-full mb-6"

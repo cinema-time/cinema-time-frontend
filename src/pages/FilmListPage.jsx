@@ -2,20 +2,39 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Grid, Card, Text, Button, Image } from "@mantine/core";
+import SearchBar from "../components/SearchBar";
 
 const API_URL = "http://localhost:5005";
 
 function FilmListPage() {
   const [film, setFilm] = useState([]);
+  const [filteredFilm, setFilteredFilm] = useState ([]);
 
   useEffect(() => {
     axios
       .get(`${API_URL}/api/film`)
       .then((response) => {
         setFilm(response.data);
+        setFilteredFilm(response.data)
       })
       .catch((e) => console.log("Error getting films from the API...", e));
   }, []);
+
+  const onChange = (e) => {
+    const value = e.target.value.toLowerCase();
+    if (value === "") {
+      setFilm(filteredFilm); 
+    } else {
+      setFilm(
+        film.filter(
+          (film) =>
+            film.title.toLowerCase().includes(value) ||
+            film.description.toLowerCase().includes(value)
+        )
+
+      );
+    }
+  };
 
   return (
     <div
@@ -26,6 +45,17 @@ function FilmListPage() {
         color: "#fff",
       }}
     >
+     <div
+  style={{
+    display: "flex",
+    justifyContent: "flex-end",
+    marginBottom: "1rem",
+  }}
+>
+  <div style={{ width: "300px" }}>
+    <SearchBar onChange={onChange} />
+  </div>
+</div>
       <h1 style={{ fontSize: "2rem", marginBottom: "2rem" }}>All Films</h1>
       <Grid gutter="md">
         {film.map((filmObj) => (

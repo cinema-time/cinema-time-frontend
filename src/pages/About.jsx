@@ -1,41 +1,43 @@
 import React from 'react';
+import { Card, Container, Title, Text, List, Anchor } from '@mantine/core';
 
 function About() {
   return (
-    <div className="about-page">
-      <h1>About Movie Night Planner</h1>
-      <p>
-        Welcome to Movie Night Planner, the ultimate destination for organizing and planning unforgettable movie nights with friends and family!
-      </p>
-      
-      <h2>Our Mission</h2>
-      <p>
-        Our mission is to bring people together through the joy of cinema. Whether you're a fan of thrilling action films, romantic comedies, or inspiring documentaries, Movie Night Planner helps you create an event that everyone will love.
-      </p>
-      
-      <h2>Features</h2>
-      
-        <li><strong>Create Events:</strong> Plan your movie night by creating and customizing events with date, time, and location.</li>
-        <li><strong>Invite Friends:</strong> Easily invite your friends and family to join in on the fun.</li>
-        <li><strong>Movie Recommendations:</strong> Get movie suggestions based on your preferences and past watch history.</li>
-        <li><strong>Manage RSVP:</strong> Keep track of who’s coming and manage your guest list with ease.</li>
-      
+    <Container size="md" py="xl" style={{ color: '#fff' }}>
+      <Card shadow="sm" padding="lg" radius="md" style={{ backgroundColor: '#1c1c1e', color: '#f1f1f1' }}>
+        <Title order={1} mb="md" style={{ color: '#7e57c2' }}>
+          About Cinema Time
+        </Title>
+        <Text mb="lg" style={{ color: '#e0e0e0' }}>
+          Welcome to <strong>Cinema Time</strong>, your ultimate companion for organizing unforgettable movie nights with friends and family. We’re here to make sure your cinema evenings are easy, fun, and memorable.
+        </Text>
 
-      <h2>Get In Touch</h2>
-      <p>
-        We love feedback and suggestions! If you have any questions or ideas on how we can improve, feel free to reach out to us at support@movienightplanner.com.
-      </p>
+        <Title order={2} mb="sm" style={{ color: '#7e57c2' }}>Our Mission</Title>
+        <Text mb="lg" style={{ color: '#e0e0e0' }}>
+          We aim to bring people together through the magic of cinema. Whether you love thrilling action, heartwarming comedies, or inspiring documentaries, <strong>Cinema Time</strong> helps craft events everyone will enjoy.
+        </Text>
 
-      <h2>Join Our Community</h2>
-      <p>
-        Follow us on social media to keep up with the latest updates and community events:
-        
-          <li>Twitter: @movienightplanner</li>
-          <li>Facebook: Movie Night Planner</li>
-          <li>Instagram: @movienightplanner</li>
-        
-      </p>
-    </div>
+        <Title order={2} mb="sm" style={{ color: '#7e57c2' }}>Features</Title>
+        <List spacing="sm" mb="lg" styles={{ item: { color: '#d0d0d0' } }}>
+          <List.Item><strong>Create Events:</strong> Customize date, time, and location for your movie nights.</List.Item>
+          <List.Item><strong>Invite Friends:</strong> Send invites and get everyone on board easily.</List.Item>
+          <List.Item><strong>Movie Recommendations:</strong> Receive curated suggestions based on your tastes.</List.Item>
+          <List.Item><strong>Manage RSVP:</strong> Track who’s coming and organize your guest list smoothly.</List.Item>
+        </List>
+
+        <Title order={2} mb="sm" style={{ color: '#7e57c2' }}>Get In Touch</Title>
+        <Text mb="lg" style={{ color: '#e0e0e0' }}>
+          We love hearing from you! For feedback, questions, or suggestions, email us at <Anchor href="mailto:support@mcinema-time.com" style={{ color: '#90caf9' }}>support@cinema-time.com</Anchor>.
+        </Text>
+
+        <Title order={2} mb="sm" style={{ color: '#7e57c2' }}>Join Our Community</Title>
+        <List spacing="sm" styles={{ item: { color: '#d0d0d0' } }}>
+          <List.Item>Twitter: <Anchor href="https://twitter.com/cinema-time" target="_blank" style={{ color: '#90caf9' }}>@cinema-time</Anchor></List.Item>
+          <List.Item>Facebook: <Anchor href="https://facebook.com/cinema-time" target="_blank" style={{ color: '#90caf9' }}>Cinema Time</Anchor></List.Item>
+          <List.Item>Instagram: <Anchor href="https://instagram.com/cinema-time" target="_blank" style={{ color: '#90caf9' }}>@cinema-time</Anchor></List.Item>
+        </List>
+      </Card>
+    </Container>
   );
 }
 

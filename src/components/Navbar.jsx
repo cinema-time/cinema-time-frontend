@@ -54,6 +54,9 @@ function Navbar() {
                 <Link to="/filmlist" className="hover:text-gray-300 transition">
                   Films
                 </Link>
+				<Link to="/about" className="hover:text-gray-300 transition">
+                 About
+                </Link>
                 <button
                   onClick={handleLogout}
                   className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition"
