@@ -118,6 +118,9 @@ function Navbar() {
                 >
                   Login
                 </Link>
+				<Link to="/about" className="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-3 py-1 rounded transition">
+                 About
+                </Link>
               </>
             )}
           </div>
@@ -173,6 +176,9 @@ function Navbar() {
               >
                 Films
               </Link>
+			  <Link to="/about" className="block text-white hover:text-gray-300">
+                 About
+                </Link>
               <button
                 onClick={handleLogout}
                 className="block w-full text-left bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded"
