@@ -90,7 +90,7 @@ function FilmListPage() {
             backgroundColor: "#1c1c1e",
             color: "#fff",
             border: "1px solid #444",
-            borderRadius: "4px",
+            borderRadius: "5px",
           }}
         >
           <option value="">Sort By</option>
