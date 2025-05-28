@@ -102,18 +102,16 @@ function EventListPage() {
                   }}
                 >
                   {eventObj.imageUrl && (
-                    <Card.Section>
+                    <Card.Section style={{ height: "400px", overflow: "hidden" }}>
                       <Image
                         src={`${API_URL}${eventObj.imageUrl}`}
                         height="100%"
                         width="100%"
                         fit="cover"
-                        radius="sm"
+                        radius="md"
                         alt={eventObj.title}
                         style={{
                           objectFit: "cover",
-                          height: "100%",
-                          width: "100%",
                         }}
                       />
                     </Card.Section>
