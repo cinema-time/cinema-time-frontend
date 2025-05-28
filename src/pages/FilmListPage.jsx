@@ -45,13 +45,13 @@ function FilmListPage() {
     if (option === "genre") {
       sortedFilms.sort((a, b) => a.genre.localeCompare(b.genre));
     } else if (option === "year") {
-      sortedFilms.sort((a, b) => b.year - a.year); // newest first
+      sortedFilms.sort((a, b) => b.year - a.year); 
     } else if (option === "alphabetical") {
       sortedFilms.sort((a, b) => a.title.localeCompare(b.title));
     } else if (option === "rating") {
-      sortedFilms.sort((a, b) => b.rating - a.rating); // highest first
+      sortedFilms.sort((a, b) => b.rating - a.rating); 
     } else {
-      sortedFilms = [...filteredFilm]; // reset to original
+      sortedFilms = [...filteredFilm]; 
     }
   
     setFilm(sortedFilms);
@@ -85,6 +85,7 @@ function FilmListPage() {
           }}
           style={{
             width: "180px",
+            height: "20px",
             padding: "0.5rem",
             backgroundColor: "#1c1c1e",
             color: "#fff",
