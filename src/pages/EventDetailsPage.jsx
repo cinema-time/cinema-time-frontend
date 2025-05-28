@@ -4,7 +4,7 @@ import axios from "axios";
 import { Card, Text, Image, Button, Badge, Group } from "@mantine/core";
 import { toast } from "react-toastify";
 
-const API_URL = "http://localhost:5005";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function EventDetailsPage() {
   const [event, setEvent] = useState(null);

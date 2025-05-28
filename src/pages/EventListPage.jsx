@@ -5,7 +5,7 @@ import { Grid, Card, Text, Button, Image } from "@mantine/core";
 import { toast } from "react-toastify";
 import SearchBar from "../components/SearchBar";
 
-const API_URL = "http://localhost:5005";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function EventListPage() {
 	const [event, setEvent] = useState([]);

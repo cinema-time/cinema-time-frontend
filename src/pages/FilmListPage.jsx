@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Grid, Card, Text, Image, Rating } from "@mantine/core";
 import SearchBar from "../components/SearchBar";
 
-const API_URL = "http://localhost:5005";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function FilmListPage() {
   const [film, setFilm] = useState([]);

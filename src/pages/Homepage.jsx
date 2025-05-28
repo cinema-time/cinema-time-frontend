@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
-const API_URL = "http://localhost:5005";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function HomePage() {
   const [film, setFilm] = useState([]);

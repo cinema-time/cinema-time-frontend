@@ -5,7 +5,7 @@ import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
 import { IconUpload, IconPhoto, IconX } from "@tabler/icons-react";
 import { Group, Text } from "@mantine/core";
 
-const API_URL = "http://localhost:5005";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function EventEditPage() {
   const [title, setTitle] = useState("");
