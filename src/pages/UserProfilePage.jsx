@@ -9,8 +9,8 @@ function UserProfilePage() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [editing, setEditing] = useState(false);
   const [success, setSuccess] = useState("");
+  const [editing, setEditing] = useState(false);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -23,17 +23,21 @@ function UserProfilePage() {
       }
 
       try {
-        const response = await axios.get(`${API_URL}/users/my-profile`, {
+        const response = await axios.get(`${API_URL}/api/users/my-profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(response.data);
         setForm({
           name: response.data.name,
           email: response.data.email,
-          password: "", // Leave empty initially
+          password: "", // Leave blank initially
         });
       } catch (err) {
-        setError("Failed to fetch user profile");
+        setError(
+          err.response?.data?.message ||
+            err.response?.data?.error ||
+            "Failed to fetch user profile"
+        );
       } finally {
         setLoading(false);
       }
@@ -43,7 +47,8 @@ function UserProfilePage() {
   }, []);
 
   const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSave = async (e) => {
@@ -51,20 +56,32 @@ function UserProfilePage() {
     const token = localStorage.getItem("authToken");
 
     try {
-      const response = await axios.put(`${API_URL}/edit-profile`, form, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.put(
+        `${API_URL}/api/users/edit-profile`,
+        form,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
       setUser(response.data);
       setEditing(false);
       setSuccess("Profile updated successfully.");
-      setForm((prev) => ({ ...prev, password: "" }));
+      setError(null);
+      setForm((prev) => ({ ...prev, password: "" })); // Clear password field
     } catch (err) {
-      setError(err.response?.data?.message || "Failed to update profile");
+      setError(
+        err.response?.data?.message ||
+          err.response?.data?.error ||
+          "Failed to update profile"
+      );
+      setSuccess("");
     }
   };
 
   if (loading) return <div className="page-container">Loading...</div>;
-  if (error) return <div className="page-container error-text">{error}</div>;
+  if (error && !editing)
+    return <div className="page-container error-text">{error}</div>;
 
   return (
     <div className="page-container">
@@ -80,7 +97,7 @@ function UserProfilePage() {
               required
             />
           ) : (
-            user.name
+            user?.name
           )}
         </h1>
 
@@ -97,7 +114,7 @@ function UserProfilePage() {
                 required
               />
             ) : (
-              user.email || "Not provided"
+              user?.email || "Not provided"
             )}
           </p>
 
@@ -117,7 +134,7 @@ function UserProfilePage() {
         </div>
 
         {success && <p className="success-text">{success}</p>}
-        {error && <p className="error-text">{error}</p>}
+        {error && editing && <p className="error-text">{error}</p>}
 
         <div style={{ marginTop: "1rem" }}>
           {editing ? (
@@ -128,7 +145,12 @@ function UserProfilePage() {
               <button
                 onClick={() => {
                   setEditing(false);
-                  setForm({ ...form, name: user.name, email: user.email, password: "" });
+                  setForm({
+                    name: user.name,
+                    email: user.email,
+                    password: "",
+                  });
+                  setError(null);
                 }}
                 className="btn-secondary"
               >
