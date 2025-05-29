@@ -210,6 +210,9 @@ function Navbar() {
               >
                 Login
               </Link>
+			  <Link to="/about" className="block border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-3 py-2 rounded">
+                 About
+                </Link>
             </>
           )}
         </div>
