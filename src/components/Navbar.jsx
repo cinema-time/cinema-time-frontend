@@ -2,6 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useContext, useState, useRef, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
 import placeholderImage from "../assets/placeholder.png"; // Optional: use a placeholder avatar
+import cinemaTimelogo from "../assets/cinemaTimelogo.png";
 
 function Navbar() {
 	const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
@@ -38,7 +39,7 @@ function Navbar() {
 							to="/"
 							className="logo text-xl font-semibold hover:text-gray-300"
 						>
-							🎬 Cinema Time
+							<img src={cinemaTimelogo} alt="Cinema Time Logo" className="h-16 w-20" />
 						</Link>
 					</h1>
 
