@@ -82,8 +82,8 @@ function EventDetailsPage() {
         </Text>
 
         <Text>
-          <strong>Where and when?</strong> {event.location} 
-          {event.date}
+          <strong>Where and when?</strong> {event.location } 
+          { event.date}
         </Text>
 
         {event.film && (
