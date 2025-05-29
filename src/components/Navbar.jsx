@@ -188,7 +188,7 @@ function Navbar() {
 							>
 								Logout
 							</button>
-							<Link to="/users">
+							<Link to="/users/my-profile">
 								<div className="flex items-center space-x-2 pt-2">
 									<img
 										src={user?.avatar || placeholderImage}
