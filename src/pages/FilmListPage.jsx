@@ -101,7 +101,7 @@ function FilmListPage() {
         </select>
       </div>
 
-      <h1 style={{ fontSize: "2rem", marginBottom: "2rem" }}>All Films</h1>
+      <h1 className="square" style={{ fontSize: "2rem", marginBottom: "2rem" }}>All Films</h1>
       <Grid gutter="md">
         {film.map((filmObj) => (
           <Grid.Col key={filmObj._id} span={{ base: 12, sm: 6, md: 4, lg: 3 }}>

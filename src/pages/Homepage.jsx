@@ -19,7 +19,7 @@ function HomePage() {
 
   return (
     <div className="carousel-container">
-      <h1>Welcome to Cinema Time</h1>
+      <h1 className="square">Welcome to Cinema Time</h1>
       <h2>NOW SHOWING</h2>
       {film.length > 0 && (
         <Carousel autoPlay interval={5000} infiniteLoop showThumbs={false}>

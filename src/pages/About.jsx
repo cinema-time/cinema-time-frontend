@@ -5,7 +5,7 @@ function About() {
   return (
     <Container size="md" py="xl" style={{ color: '#fff' }}>
       <Card shadow="sm" padding="lg" radius="md" style={{ backgroundColor: '#1c1c1e', color: '#f1f1f1' }}>
-        <Title order={1} mb="md" style={{ color: '#7e57c2' }}>
+        <Title  order={1} mb="md" style={{ color: '#7e57c2', fontFamily: "square" }}>
           About Cinema Time
         </Title>
         <Text mb="lg" style={{ color: '#e0e0e0' }}>

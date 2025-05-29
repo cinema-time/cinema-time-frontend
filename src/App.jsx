@@ -21,7 +21,6 @@ import "@mantine/carousel/styles.css";
 import "@mantine/dropzone/styles.css";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Followers from "./pages/Followers";
 
 
 function App() {
@@ -35,7 +34,6 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/users/my-profile" element={<UserProfilePage />} />
-          <Route path="/followers/:followerId" element={<Followers />} />
           <Route path="/films/:filmId" element={<FilmDetailsPage />} />
           <Route path="/filmlist" element={<FilmListPage />} />
           <Route path="/events" element={<EventListPage />} />

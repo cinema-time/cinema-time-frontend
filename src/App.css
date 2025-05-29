@@ -141,3 +141,12 @@
       color: var(--accent-color);
     }
   }
+
+  @font-face{
+    font-family: square;
+    src: url(./assets/fonts/aAtmospheric.ttf);
+  }
+
+  .square {
+    font-family: square;
+  }
