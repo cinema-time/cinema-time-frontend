@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import placeholderImage from "./../assets/placeholder.png";
 
-const API_URL = "http://localhost:5005/api";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function UserProfilePage() {
   const [user, setUser] = useState(null);
