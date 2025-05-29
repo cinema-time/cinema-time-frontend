@@ -83,7 +83,6 @@ function EventDetailsPage() {
 
         <Text>
           <strong>Where: </strong> {event.location } 
-          { event.date}
         </Text>
         <Text>
           <strong>When: </strong> { event.date}
