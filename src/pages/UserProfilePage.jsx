@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import placeholderImage from "./../assets/placeholder.png";
+import { AuthContext } from "../context/auth.context";  // Adjust path as needed
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -11,6 +12,8 @@ function UserProfilePage() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState("");
   const [editing, setEditing] = useState(false);
+
+  const { updateUser } = useContext(AuthContext); // <-- get updateUser from context
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -69,6 +72,9 @@ function UserProfilePage() {
       setSuccess("Profile updated successfully.");
       setError(null);
       setForm((prev) => ({ ...prev, password: "" })); // Clear password field
+      
+      updateUser(response.data); // <-- update global auth context user here
+
     } catch (err) {
       setError(
         err.response?.data?.message ||

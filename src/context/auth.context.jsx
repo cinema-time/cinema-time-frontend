@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
 // Import the string from the .env with URL of the API/server - http://localhost:5005
 const API_URL = import.meta.env.VITE_API_URL;
-
 
 const AuthContext = React.createContext();
 
@@ -39,7 +37,7 @@ function AuthProviderWrapper(props) {
         })
         .catch((error) => {
           if (error) {
-            setAuthError(error.response.data.message);
+            setAuthError(error.response?.data?.message || "Authentication error");
             return;
           }
           // If the server sends an error response (invalid token)
@@ -66,6 +64,11 @@ function AuthProviderWrapper(props) {
     authenticateUser();
   };
 
+  // New method to update user in context
+  const updateUser = (newUserData) => {
+    setUser(newUserData);
+  };
+
   useEffect(() => {
     // Run the function after the initial render,
     // after the components in the App render for the first time.
@@ -82,6 +85,7 @@ function AuthProviderWrapper(props) {
         authenticateUser,
         logOutUser,
         authError,
+        updateUser,  // <-- expose updateUser here
       }}
     >
       {props.children}
