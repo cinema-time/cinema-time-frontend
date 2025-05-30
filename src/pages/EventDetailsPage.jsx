@@ -1,7 +1,17 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import { Card, Text, Image, Button, Badge, Group } from "@mantine/core";
+import {
+  Card,
+  Text,
+  Image,
+  Button,
+  Badge,
+  Group,
+  Divider,
+  Grid,
+  Stack,
+} from "@mantine/core";
 import { toast } from "react-toastify";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -55,93 +65,86 @@ function EventDetailsPage() {
         color: "#fff",
         display: "flex",
         justifyContent: "center",
+        alignItems: "center",
       }}
     >
       <Card
-        shadow="sm"
-        padding="lg"
-        radius="md"
+        shadow="xl"
+        padding="xl"
+        radius="lg"
         withBorder
         style={{
-          maxWidth: 500,
-          width: "100%",
-          backgroundColor: "#1c1c1e",
-          color: "#f1f1f1",
+          width: "90%",
+          maxWidth: "1200px",
+          backgroundColor: "#1e1e1e",
+          color: "#fff",
         }}
       >
-        <Text size="xl" fw={700} mt="sm">
-          {event.title}
-        </Text>
+        <Grid gutter="xl">
+          {event.imageUrl && (
+            <Grid.Col span={{ base: 12, md: 6 }}>
+              <Image
+                src={`${API_URL}${event.imageUrl}?t=${new Date().getTime()}`}
+                height={400}
+                fit="cover"
+                radius="md"
+                alt={event.title}
+              />
+            </Grid.Col>
+          )}
 
-        <Text mt="xs" c="dimmed" size="sm">
-          {event.description}
-        </Text>
+          <Grid.Col span={{ base: 12, md: event.imageUrl ? 6 : 12 }}>
+            <Stack spacing="md">
+              <Text size = {36} fw={700} style={{ lineHeight: 1.2, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>
+                {event.title}
+              </Text>
+              <Text size="xl" c="dimmed">
+                {event.description}
+              </Text>
 
-        <Text mt="md">
-          <strong>Created by:</strong> {event.createdBy?.name}
-        </Text>
+              <Divider my="sm" />
 
-        <Text>
-          <strong>Where: </strong> {event.location } 
-        </Text>
-        <Text>
-          <strong>When: </strong> { event.date}
-        </Text>
+              <Text size="md">
+                <strong>Created by:</strong> {event.createdBy?.name}
+              </Text>
+              <Text size="md">
+                <strong>Where:</strong> {event.location}
+              </Text>
+              <Text size="md">
+                <strong>When:</strong> {event.date}
+              </Text>
+              {event.film && (
+                <Text size="md">
+                  <strong>Film:</strong> {event.film.title}
+                </Text>
+              )}
 
-        {event.film && (
-          <Text>
-            <strong>Film:</strong> {event.film.title}
-          </Text>
-        )}
+              <Text mt="md" size="md" fw={500}>
+                Who's attending:
+              </Text>
+              <Group spacing="xs" mt={4} wrap="wrap">
+                {event.participants.map((participant, index) => (
+                  <Badge key={index} color="blue" variant="light">
+                    {participant.name}
+                  </Badge>
+                ))}
+              </Group>
+            </Stack>
+          </Grid.Col>
+        </Grid>
 
-        <Text>
-          <strong>Who's attending:</strong>
-        </Text>
-
-        <Group mt="xs" spacing="xs" wrap="wrap">
-          {event.participants.map((participant, index) => (
-            <Badge
-              key={index}
-              color="blue"
-              variant="light"
-              style={{ marginBottom: "5px" }}
-            >
-              {participant.name}
-            </Badge>
-          ))}
-        </Group>
-
-        <Group mt="lg" spacing="md">
+        <Group mt="xl" spacing="md" position="right">
           <Link to="/events">
-            <Button variant="outline" color="gray">
-              Back to Events
+            <Button variant="outline" color="gray" size="md">
+              Back
             </Button>
           </Link>
           <Link to={`/events/edit/${eventId}`}>
-            <Button variant="filled" color="blue">
-              Edit Event
+            <Button variant="filled" color="blue" size="md">
+              Edit
             </Button>
           </Link>
         </Group>
-
-        {event.imageUrl && (
-          <Card.Section
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              paddingTop: "1.5rem",
-            }}
-          >
-            <Image
-              src={`${API_URL}${event.imageUrl}?t=${new Date().getTime()}`}
-              height={120}
-              width={180}
-              fit="cover"
-              radius="sm"
-              alt={event.title}
-            />
-          </Card.Section>
-        )}
       </Card>
     </div>
   );
