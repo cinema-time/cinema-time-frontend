@@ -1,12 +1,17 @@
-# React + Vite
+# Cinema-time
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to Cinema Time, your ultimate companion for organizing unforgettable movie nights with friends and family. We’re here to make sure your cinema evenings are easy, fun, and memorable.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-This is the Frontend (React) for our REACT App.
+    -A repository with the backend code can be found here "https://github.com/cinema-time/cinema-time-backend".
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## INSTRUCTIONS
+
+-You need to sign up to be able to access the list of events and to create/modify events. You can sign up by clicking on the SignUp button on the Homepage.
+
+## DEMO
+
+-Link where users can see the final version of your project: "https://cinema-time.netlify.app/"
+
